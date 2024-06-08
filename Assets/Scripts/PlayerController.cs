@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,10 +22,15 @@ public class PlayerController : MonoBehaviour
     // Player health
     public int health = 5;
 
+    // Update score text
+    public TextMeshProUGUI scoreText;
+
     void Start()
     {
         // Get and store the Rigidbody component attached to the player.
         rb = GetComponent<Rigidbody>();
+        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        SetScoreText();
     }
  
     // Imput detected.
@@ -53,8 +60,11 @@ public class PlayerController : MonoBehaviour
         // Creates 3D movement.
         Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
 
-        // Force to the Rigidbody of player.
-        rb.AddForce(movement * speed); 
+        // Force to the Rigidbody if not null
+        if (rb != null)
+        {
+            rb.AddForce(movement * speed);
+        }
     }
 
     // Player score
@@ -65,7 +75,8 @@ public class PlayerController : MonoBehaviour
         {
             // Increment score and print total
             score++;
-            Debug.Log($"Score: {score}");
+            SetScoreText();
+            // Debug.Log($"Score: {score}");
 
             // Destroy coin after contact
             Destroy(other.gameObject);
@@ -100,5 +111,14 @@ public class PlayerController : MonoBehaviour
 
         // Reloads the start scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // Update score text
+    void SetScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = $"Score: {score}";
+        }
     }
 }
