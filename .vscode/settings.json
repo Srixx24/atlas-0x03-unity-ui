@@ -52,5 +52,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "atlas-0x02-unity-scripting.sln"
+    "dotnet.defaultSolution": "atlas-0x03-unity-ui.sln"
 }
