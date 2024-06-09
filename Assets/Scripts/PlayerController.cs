@@ -25,12 +25,21 @@ public class PlayerController : MonoBehaviour
     // Update score text
     public TextMeshProUGUI scoreText;
 
+    // Update player health
+    public TextMeshProUGUI healthText;
+
     void Start()
     {
         // Get and store the Rigidbody component attached to the player.
         rb = GetComponent<Rigidbody>();
+
+        // Find ScoreText and HealthText
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        healthText = GameObject.Find("HealthText").GetComponent<TextMeshProUGUI>();
+
+        // Initialize score and health methods
         SetScoreText();
+        SetHealthText();
     }
  
     // Imput detected.
@@ -86,7 +95,8 @@ public class PlayerController : MonoBehaviour
         {
             // Decrease health and print new value
             health--;
-            Debug.Log($"Health: {health}");
+            SetHealthText();
+            // Debug.Log($"Health: {health}");
         }
 
         if (other.CompareTag("Goal"))
@@ -119,6 +129,15 @@ public class PlayerController : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = $"Score: {score}";
+        }
+    }
+
+    // Update player health
+    void SetHealthText()
+    {
+        if (healthText != null)
+        {
+            healthText.text = $"Health: {health}";
         }
     }
 }
