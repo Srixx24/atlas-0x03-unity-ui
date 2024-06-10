@@ -10,7 +10,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     // Rigidbody for player.
-    private Rigidbody rb; 
+    private Rigidbody rb;
 
     // Movement along X and Y axes.
     private float movementX;
@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
     // Update player health
     public TextMeshProUGUI healthText;
 
+    // UI message text and color
+    public Text WinLoseText;
+    public GameObject WinLoseBG;
+
     void Start()
     {
         // Get and store the Rigidbody component attached to the player.
@@ -41,7 +45,7 @@ public class PlayerController : MonoBehaviour
         SetScoreText();
         SetHealthText();
     }
- 
+
     // Imput detected.
     void OnMove(InputValue movementValue)
     {
@@ -58,8 +62,19 @@ public class PlayerController : MonoBehaviour
     {
         if (health == 0)
         {
-            Debug.Log($"Game Over!");
-            ResetScene();
+            if (WinLoseText != null)
+            {
+                // Print game over message
+                WinLoseText.color = Color.white;
+                WinLoseBG.GetComponent<Image>().color = Color.red;
+                WinLoseText.text = "Game Over!";
+            }
+            StartCoroutine(LoadScene(3));
+        }
+        else if (Input.GetKey(KeyCode.Escape))
+        {
+            // Load the menu scene
+            SceneManager.LoadScene(0);
         }
     }
 
@@ -99,17 +114,16 @@ public class PlayerController : MonoBehaviour
             // Debug.Log($"Health: {health}");
         }
 
-        if (other.CompareTag("Goal"))
+        if (other.gameObject.CompareTag("Goal"))
         {
-            if (score == 22)
+            if (WinLoseText != null)
             {
                 // Print goal message
-                Debug.Log($"You win!");
+                WinLoseText.color = Color.black;
+                WinLoseBG.GetComponent<Image>().color = Color.green;
+                WinLoseText.text = "You win!";
             }
-            else
-            {
-                Debug.Log($"Keep looking for more coins!");
-            }
+            // Debug.Log($"You win!");
         }
     }
 
@@ -118,9 +132,15 @@ public class PlayerController : MonoBehaviour
     {
         health = 5;
         score = 0;
-
+        StartCoroutine(LoadScene(0));
         // Reloads the start scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private IEnumerator LoadScene(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        SceneManager.LoadScene("Menu");
     }
 
     // Update score text
