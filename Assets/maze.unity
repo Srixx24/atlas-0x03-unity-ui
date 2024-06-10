@@ -2115,6 +2115,7 @@ GameObject:
   - component: {fileID: 238012323}
   - component: {fileID: 238012325}
   - component: {fileID: 238012324}
+  - component: {fileID: 238012326}
   m_Layer: 5
   m_Name: WinLoseBG
   m_TagString: Untagged
@@ -2180,6 +2181,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238012322}
   m_CullTransparentMesh: 1
+--- !u!114 &238012326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238012322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1e8aaa7adece84192d3dcc3f04065a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  health: 5
+  scoreText: {fileID: 1011381671}
+  healthText: {fileID: 330847696}
+  WinLoseText: {fileID: 804078415}
+  WinLoseBG: {fileID: 238012322}
 --- !u!1 &238758361 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5394084325363514173, guid: dbb995c90e0e4374f81563f0ea25e13c,
@@ -5200,6 +5219,8 @@ MonoBehaviour:
   health: 5
   scoreText: {fileID: 1011381671}
   healthText: {fileID: 330847696}
+  WinLoseText: {fileID: 804078415}
+  WinLoseBG: {fileID: 238012322}
 --- !u!1001 &656570656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6859,6 +6880,7 @@ GameObject:
   - component: {fileID: 804078414}
   - component: {fileID: 804078416}
   - component: {fileID: 804078415}
+  - component: {fileID: 804078417}
   m_Layer: 5
   m_Name: WinLoseText
   m_TagString: Untagged
@@ -6927,6 +6949,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804078413}
   m_CullTransparentMesh: 1
+--- !u!114 &804078417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804078413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1e8aaa7adece84192d3dcc3f04065a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  health: 5
+  scoreText: {fileID: 1011381671}
+  healthText: {fileID: 330847696}
+  WinLoseText: {fileID: 804078415}
+  WinLoseBG: {fileID: 238012322}
 --- !u!1001 &809376878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17279,6 +17319,8 @@ MonoBehaviour:
   health: 5
   scoreText: {fileID: 0}
   healthText: {fileID: 0}
+  WinLoseText: {fileID: 0}
+  WinLoseBG: {fileID: 0}
 --- !u!114 &2041008371
 MonoBehaviour:
   m_ObjectHideFlags: 0

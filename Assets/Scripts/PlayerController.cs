@@ -66,15 +66,20 @@ public class PlayerController : MonoBehaviour
             {
                 // Print game over message
                 WinLoseText.color = Color.white;
-                WinLoseBG.GetComponent<Image>().color = Color.red;
                 WinLoseText.text = "Game Over!";
+            }
+            if (WinLoseBG != null)
+            {
+                WinLoseBG.GetComponent<Image>().color = Color.red;
+                WinLoseBG.SetActive(true);
             }
             StartCoroutine(LoadScene(3));
         }
-        else if (Input.GetKey(KeyCode.Escape))
+
+        if (Input.GetKey(KeyCode.Escape))
         {
             // Load the menu scene
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Menu");
         }
     }
 
@@ -120,9 +125,14 @@ public class PlayerController : MonoBehaviour
             {
                 // Print goal message
                 WinLoseText.color = Color.black;
-                WinLoseBG.GetComponent<Image>().color = Color.green;
                 WinLoseText.text = "You win!";
             }
+            if (WinLoseBG != null)
+            {
+                WinLoseBG.GetComponent<Image>().color = Color.green;
+                WinLoseBG.SetActive(true);
+            }
+            StartCoroutine(LoadScene(3));
             // Debug.Log($"You win!");
         }
     }
@@ -132,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         health = 5;
         score = 0;
-        StartCoroutine(LoadScene(0));
+        
         // Reloads the start scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -140,7 +150,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator LoadScene(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Update score text
